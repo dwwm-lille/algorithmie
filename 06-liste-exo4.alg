@@ -11,6 +11,7 @@
         <item algoitem="I EST_DU_TYPE NOMBRE" code="1#NOMBRE#I"/>
         <item algoitem="SALAIRES EST_DU_TYPE LISTE" code="1#LISTE#SALAIRES"/>
         <item algoitem="TOTAL_BRUT EST_DU_TYPE NOMBRE" code="1#NOMBRE#TOTAL_BRUT"/>
+        <item algoitem="SALAIRES_BRUT EST_DU_TYPE LISTE" code="1#LISTE#SALAIRES_BRUT"/>
         <item algoitem="TOTAL_EMPLOYEUR EST_DU_TYPE NOMBRE" code="1#NOMBRE#TOTAL_EMPLOYEUR"/>
         <item algoitem="TOTAL_NET EST_DU_TYPE NOMBRE" code="1#NOMBRE#TOTAL_NET"/>
     </item>
@@ -18,8 +19,9 @@
         <item algoitem="SALAIRES[0] PREND_LA_VALEUR 1500:1600" code="5#SALAIRES#1500:1600#0"/>
         <item algoitem="POUR I ALLANT_DE 0 A 1" code="12#I#0#1">
             <item algoitem="DEBUT_POUR" code="13#debutpour"/>
+            <item algoitem="SALAIRES_BRUT[I] PREND_LA_VALEUR SALAIRES[I] * (1 + 40 / 100)" code="5#SALAIRES_BRUT#SALAIRES[I] * (1 + 40 / 100)#I"/>
             <item algoitem="TOTAL_BRUT PREND_LA_VALEUR TOTAL_BRUT + SALAIRES[I]" code="5#TOTAL_BRUT#TOTAL_BRUT + SALAIRES[I]#pasliste"/>
-            <item algoitem="TOTAL_EMPLOYEUR PREND_LA_VALEUR TOTAL_EMPLOYEUR + SALAIRES[I] * (1 + 40 / 100)" code="5#TOTAL_EMPLOYEUR#TOTAL_EMPLOYEUR + SALAIRES[I] * (1 + 40 / 100)#pasliste"/>
+            <item algoitem="TOTAL_EMPLOYEUR PREND_LA_VALEUR TOTAL_EMPLOYEUR + SALAIRES_BRUT[I]" code="5#TOTAL_EMPLOYEUR#TOTAL_EMPLOYEUR + SALAIRES_BRUT[I]#pasliste"/>
             <item algoitem="TOTAL_NET PREND_LA_VALEUR TOTAL_NET + SALAIRES[I] * (1 - 25 / 100)" code="5#TOTAL_NET#TOTAL_NET + SALAIRES[I] * (1 - 25 / 100)#pasliste"/>
             <item algoitem="FIN_POUR" code="14#finpour"/>
         </item>
@@ -38,9 +40,9 @@
         <item algoitem="AFFICHER &quot;Détail salaires avec charges patronales: &quot;" code="4#Détail salaires avec charges patronales: #0"/>
         <item algoitem="POUR I ALLANT_DE 0 A 1" code="12#I#0#1">
             <item algoitem="DEBUT_POUR" code="13#debutpour"/>
-            <item algoitem="AFFICHERCALCUL SALAIRES[I] * (1 + 40 / 100)" code="20#SALAIRES[I] * (1 + 40 / 100)#0"/>
+            <item algoitem="AFFICHER SALAIRES_BRUT[I]" code="3#SALAIRES_BRUT#0#I"/>
             <item algoitem="AFFICHER &quot;€ (&quot;" code="4#€ (#0"/>
-            <item algoitem="AFFICHERCALCUL SALAIRES[I] * 40 / 100" code="20#SALAIRES[I] * 40 / 100#0"/>
+            <item algoitem="AFFICHERCALCUL SALAIRES_BRUT[I] - SALAIRES[I]" code="20#SALAIRES_BRUT[I] - SALAIRES[I]#0"/>
             <item algoitem="AFFICHER &quot;€) &quot;" code="4#€) #0"/>
             <item algoitem="FIN_POUR" code="14#finpour"/>
         </item>
